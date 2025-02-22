@@ -1,9 +1,21 @@
 <?php
-include 'php/db_connect.php';
+// Correct the path to db_connect.php
+include '../php/db_connect.php'; // Adjust this according to where your files are located
 $id = $_GET['id'];
+
+// Safely handle the ID to prevent SQL injection
+$id = intval($id); // Ensure it's an integer
+
 $sql = "SELECT * FROM users WHERE id=$id";
 $result = $conn->query($sql);
-$user = $result->fetch_assoc();
+
+// Check if a user was found
+if ($result && $result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+} else {
+    echo "User not found.";
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,18 +26,18 @@ $user = $result->fetch_assoc();
 <body>
     <div class="container mt-5">
         <h2>Edit User</h2>
-        <form action="php/update.php" method="POST">
+        <form action="../php/update.php" method="POST">
             <input type="hidden" name="id" value="<?= $user['id'] ?>">
             <div class="mb-3">
                 <label>Name</label>
-                <input type="text" class="form-control" name="name" value="<?= $user['name'] ?>" required>
+                <input type="text" class="form-control" name="name" value="<?= htmlspecialchars($user['name']) ?>" required>
             </div>
             <div class="mb-3">
                 <label>Email</label>
-                <input type="email" class="form-control" name="email" value="<?= $user['email'] ?>" required>
+                <input type="email" class="form-control" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
             </div>
             <button type="submit" class="btn btn-success">Update</button>
-            <a href="user_list.php" class="btn btn-info">Back</a>
+            <a href="/user_registration/php/user_list.php" class="btn btn-info">Back</a>
         </form>
     </div>
 </body>

@@ -1,4 +1,4 @@
-<?php include 'php/db_connect.php'; ?>
+<?php include __DIR__ . '/../php/db_connect.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +8,7 @@
 <body>
     <div class="container mt-5">
         <h2>User Registration</h2>
-        <form action="php/register_process.php" method="POST">
+        <form action="/user_registration/php/register_process.php" method="POST">
             <div class="mb-3">
                 <label>Name</label>
                 <input type="text" class="form-control" name="name" required>
@@ -22,7 +22,8 @@
                 <input type="password" class="form-control" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
-            <a href="user_list.php" class="btn btn-info">User List</a>
+            <a href="/user_registration/php/user_list.php" class="btn btn-info">User List</a>
+
         </form>
     </div>
 </body>

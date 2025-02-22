@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
     if ($conn->query($sql) === TRUE) {
-        echo "Registration Successful! <a href='../user_list.php'>View Users</a>";
+        echo "Registration Successful! <a href='/user_registration/php/user_list.php'>View Users</a>";
     } else {
         echo "Error: " . $conn->error;
     }
