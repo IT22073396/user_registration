@@ -1,5 +1,6 @@
 <?php
-include 'php/db_connect.php';
+include __DIR__ . '/../php/db_connect.php';
+
 ?>
 <!DOCTYPE <html>
 
@@ -28,7 +29,8 @@ include 'php/db_connect.php';
                         <td>{$row['email']}</td>
                         <td>
                             <a href='edit.php?id={$row['id']}' class='btn btn-warning'>Edit</a>
-                            <a href='php/delete.php?id={$row['id']}' class='btn btn-danger'>Delete</a>
+                            <a href='../php/delete.php?id={$row['id']}' class='btn btn-danger'>Delete</a>
+
                         </td>
                      </tr>";
             }
